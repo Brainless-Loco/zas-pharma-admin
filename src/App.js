@@ -7,6 +7,7 @@ import Sidebar from './Components/Sidebar/Sidebar';
 import Summary from './Components/Tabs/Summary';
 import { Box } from '@mui/material';
 import InsertCategory from './Components/Tabs/Category/Insert';
+import InsertProduct from './Components/Tabs/Products/Insert';
 
 function App() {
   const [showSideBar, setShowSideBar] = useState(true)
@@ -23,7 +24,7 @@ function App() {
           
           <Box className="flex w-full h-[90vh]">
             <Sidebar showSideBar={showSideBar} toggleSideBarShowingState={toggleSideBarShowingState}/>
-            <Box className={`${showSideBar?"w-5/6":"w-11/12"}`}>
+            <Box className={`${showSideBar?"w-5/6":"w-11/12"} h-full overflow-y-auto`}>
               <Routes>
                 {
                   ["/","summary","Summary"].map((path)=>(
@@ -31,9 +32,17 @@ function App() {
                   ))
                 }
 
-{
-                  ["/insert-category","/add-category","/new-category"].map((path)=>(
+                {
+                  ["/insert-category","/add-category","/new-category", "/create-category"].map((path)=>(
                     <Route path={path} element={<InsertCategory/>}/>
+                  ))
+
+                }
+
+                { 
+                
+                  ["/insert-product","/add-product","/new-product","/create-product"].map((path)=>(
+                    <Route path={path} element={<InsertProduct/>}/>
                   ))
                 }
               

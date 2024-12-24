@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import Sidebar from './Components/Sidebar/Sidebar';
 import Summary from './Components/Tabs/Summary';
 import { Box } from '@mui/material';
+import InsertCategory from './Components/Tabs/Category/Insert';
 
 function App() {
   const [showSideBar, setShowSideBar] = useState(true)
@@ -27,6 +28,12 @@ function App() {
                 {
                   ["/","summary","Summary"].map((path)=>(
                     <Route path={path} element={<Summary/>}/>
+                  ))
+                }
+
+{
+                  ["/insert-category","/add-category","/new-category"].map((path)=>(
+                    <Route path={path} element={<InsertCategory/>}/>
                   ))
                 }
               

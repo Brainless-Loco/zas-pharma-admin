@@ -5,8 +5,8 @@ import ListItem from "@mui/material/ListItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import Collapse from "@mui/material/Collapse";
-import InsertDriveFileIcon from "@mui/icons-material/InsertDriveFile";
-import DeleteIcon from "@mui/icons-material/Delete";
+import LibraryAddIcon from '@mui/icons-material/LibraryAdd';
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import UpdateIcon from "@mui/icons-material/Update";
 
 export default function CollapseList({baseUrl, openState}) {
@@ -16,7 +16,7 @@ export default function CollapseList({baseUrl, openState}) {
             <Link to={`/insert-${baseUrl}`}>
             <ListItem button className="pl-8 hover:bg-cyan-700">
                 <ListItemIcon>
-                <InsertDriveFileIcon className="text-white text-2xl"/>
+                    <LibraryAddIcon className="text-sky-300 text-2xl"/>
                 </ListItemIcon>
                 <ListItemText primary="Insert" />
             </ListItem>
@@ -24,7 +24,7 @@ export default function CollapseList({baseUrl, openState}) {
             <Link to={`/update-${baseUrl}`}>
             <ListItem button className="pl-8 hover:bg-cyan-700">
                 <ListItemIcon>
-                <UpdateIcon className="text-white  text-2xl"  />
+                    <UpdateIcon className="text-green-700  text-2xl"  />
                 </ListItemIcon>
                 <ListItemText primary="Update" />
             </ListItem>
@@ -32,7 +32,7 @@ export default function CollapseList({baseUrl, openState}) {
             <Link to={`/delete-${baseUrl}`}>
             <ListItem button className="pl-8 hover:bg-cyan-700">
                 <ListItemIcon>
-                <DeleteIcon className="text-white  text-2xl" />
+                    <DeleteForeverIcon className="text-red-700  text-2xl" />
                 </ListItemIcon>
                 <ListItemText primary="Delete" />
             </ListItem>

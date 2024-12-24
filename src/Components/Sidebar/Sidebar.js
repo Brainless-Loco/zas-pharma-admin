@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, Route, Routes } from "react-router-dom";
+import { Link } from "react-router-dom";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
@@ -9,11 +9,10 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import CategoryIcon from "@mui/icons-material/Category";
 import MedicationLiquidIcon from '@mui/icons-material/MedicationLiquid';
 import SummarizeIcon from "@mui/icons-material/Summarize";
-import CollapseList from "../Components/Sidebar/CollapseList";
 import Box from "@mui/material/Box";
-import InsertCategory from "../Components/Home/Tabs/InsertCategory";
+import CollapseList from "./CollapseList";
 
-function Home({ showSideBar,toggleSideBarShowingState }) {
+function Sidebar({ showSideBar,toggleSideBarShowingState }) {
   const [openCategory, setOpenCategory] = useState(false);
   const [openProduct, setOpenProduct] = useState(false);
 
@@ -31,8 +30,6 @@ function Home({ showSideBar,toggleSideBarShowingState }) {
   }
 
   return (
-    <Box className="flex h-[90vh]">
-      {/* Sidebar */}
       <Box className={` bg-cyan-950 text-white ${showSideBar?"w-1/6":"w-1/12"}`}>
         <List>
           {/* Summary */}
@@ -70,14 +67,7 @@ function Home({ showSideBar,toggleSideBarShowingState }) {
           <CollapseList baseUrl={"product"} openState={openProduct}/>
         </List>
       </Box>
-
-      {/* Main Content */}
-      <Routes>
-
-      <Route path="/summary" element={<InsertCategory/>}/>
-      </Routes>
-    </Box>
   );
 }
 
-export default Home;
+export default Sidebar;

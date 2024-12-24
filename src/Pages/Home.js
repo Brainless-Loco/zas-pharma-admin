@@ -1,53 +1,41 @@
-import React, { useState } from 'react';
-import AppBar from '@mui/material/AppBar';
-import Typography from '@mui/material/Typography';
-import IconButton from '@mui/material/IconButton';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
-import Divider from '@mui/material/Divider';
-import CategoryIcon from '@mui/icons-material/Category';
-import InsertDriveFileIcon from '@mui/icons-material/InsertDriveFile';
-import DeleteIcon from '@mui/icons-material/Delete';
-import UpdateIcon from '@mui/icons-material/Update';
-import SummarizeIcon from '@mui/icons-material/Summarize';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemIcon from "@mui/material/ListItemIcon";
+import ListItemText from "@mui/material/ListItemText";
+import Collapse from "@mui/material/Collapse";
+import ExpandLessIcon from "@mui/icons-material/ExpandLess";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import CategoryIcon from "@mui/icons-material/Category";
+import InsertDriveFileIcon from "@mui/icons-material/InsertDriveFile";
+import DeleteIcon from "@mui/icons-material/Delete";
+import UpdateIcon from "@mui/icons-material/Update";
+import SummarizeIcon from "@mui/icons-material/Summarize";
+import { Box } from "@mui/material";
+import CollapseList from "../Components/Home/CollapseList";
 
-function Home({showSideBar}) {
-  const [selectedOption, setSelectedOption] = useState("Summary");
+function Home({ showSideBar }) {
+  const [openCategory, setOpenCategory] = useState(false);
+  const [openProduct, setOpenProduct] = useState(false);
 
-  // Sidebar items
-  const menuItems = [
-    { name: "Summary", path: "/summary", icon: <SummarizeIcon className="text-white " sx={{fontSize:'30px'}}/> },
-    { name: "Insert Category", path: "/insert-category", icon: <CategoryIcon className="text-white " sx={{fontSize:'30px'}} /> },
-    { name: "Insert Product", path: "/insert-product", icon: <InsertDriveFileIcon className="text-white " sx={{fontSize:'30px'}} /> },
-    { name: "Delete Category", path: "/delete-category", icon: <DeleteIcon className="text-white " sx={{fontSize:'30px'}} /> },
-    { name: "Delete Product", path: "/delete-product", icon: <DeleteIcon className="text-white " sx={{fontSize:'30px'}} /> },
-    { name: "Update Category", path: "/update-category", icon: <UpdateIcon className="text-white " sx={{fontSize:'30px'}} /> },
-    { name: "Update Product", path: "/update-product", icon: <UpdateIcon className="text-white " sx={{fontSize:'30px'}} /> },
-  ];
-  
+  const toggleCategory = () => setOpenCategory(!openCategory);
+  const toggleProduct = () => setOpenProduct(!openProduct);
 
-  // Sidebar click handler
-  const handleSidebarClick = (item) => {
-    setSelectedOption(item);
-  };
-
-  // Forms based on selected option
-  const renderForm = () => {
+  const renderForm = (selectedOption) => {
     switch (selectedOption) {
-      case "Insert Category":
+      case "/insert-category":
         return <div>Insert Category Form</div>;
-      case "Insert Product":
-        return <div>Insert Product Form</div>;
-      case "Delete Category":
-        return <div>Delete Category Form</div>;
-      case "Delete Product":
-        return <div>Delete Product Form</div>;
-      case "Update Category":
+      case "/update-category":
         return <div>Update Category Form</div>;
-      case "Update Product":
+      case "/delete-category":
+        return <div>Delete Category Form</div>;
+      case "/insert-product":
+        return <div>Insert Product Form</div>;
+      case "/update-product":
         return <div>Update Product Form</div>;
+      case "/delete-product":
+        return <div>Delete Product Form</div>;
       default:
         return <div>Summary Content</div>;
     }
@@ -58,19 +46,38 @@ function Home({showSideBar}) {
       {/* Sidebar */}
       <div className="w-1/5 bg-cyan-950 text-white">
         <List>
-          {menuItems.map((item) => (
-            <ListItem
-              button
-              key={item.name}
-              onClick={() => handleSidebarClick(item.name)}
-              className={`hover:bg-cyan-700 cursor-pointer ${
-                selectedOption === item.name ? " bg-cyan-700" : " "
-              }`}
-            >
-              <ListItemIcon >{item.icon}</ListItemIcon>
-              {showSideBar&&<ListItemText primary={item.name} />}
+          {/* Summary */}
+          <Link to="/summary">
+            <ListItem button className="hover:bg-cyan-700">
+              <ListItemIcon>
+                <SummarizeIcon className="text-white" sx={{ fontSize: "30px" }} />
+              </ListItemIcon>
+              {showSideBar && <ListItemText primary="Summary" />}
             </ListItem>
-          ))}
+          </Link>
+
+          {/* Category Dropdown */}
+          <ListItem button onClick={toggleCategory} className="hover:bg-cyan-700">
+            <ListItemIcon>
+              <CategoryIcon className="text-white" sx={{ fontSize: "30px" }} />
+            </ListItemIcon>
+            {showSideBar && (
+              <ListItemText primary="Category" />
+            )}
+            {showSideBar ? (openCategory ? <ExpandLessIcon /> : <ExpandMoreIcon />) :<></>}
+          </ListItem>
+          <CollapseList baseUrl={"category"} openState={openCategory}/>
+          <ListItem button onClick={toggleProduct} className="hover:bg-cyan-700">
+            <ListItemIcon>
+              <InsertDriveFileIcon className="text-white" sx={{ fontSize: "30px" }} />
+            </ListItemIcon>
+            {showSideBar && (
+              <ListItemText primary="Product" />
+            )}
+            {showSideBar ? (openProduct ? <ExpandLessIcon /> : <ExpandMoreIcon />) :<></>}
+          </ListItem>
+          
+          <CollapseList baseUrl={"product"} openState={openProduct}/>
         </List>
       </div>
 

@@ -3,7 +3,7 @@ import { HelmetProvider } from 'react-helmet-async';
 import Home from './Pages/Home';
 import Appbar from './Components/AppBar/Appbar';
 import { useState } from 'react';
-import { Router } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 
 function App() {
   const [showSideBar, setShowSideBar] = useState(true)
@@ -16,10 +16,11 @@ function App() {
     <HelmetProvider>
       
       <Router>
-
-        <Appbar showSideBar={showSideBar} toggleSideBarShowingState={toggleSideBarShowingState}/>
-        <Home showSideBar={showSideBar}/>
-        
+          <Appbar showSideBar={showSideBar} toggleSideBarShowingState={toggleSideBarShowingState}/>
+        <Routes>
+          <Route path="/" element={<Home showSideBar={showSideBar}/>}/>
+          
+        </Routes>
       </Router>
     </HelmetProvider>
   );

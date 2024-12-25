@@ -8,6 +8,7 @@ import Summary from './Components/Summary/Summary';
 import { Box } from '@mui/material';
 import InsertCategory from './Components/Tabs/Category/Insert';
 import InsertProduct from './Components/Tabs/Products/Insert';
+import InsertActivity from './Components/Tabs/Activity/Insert';
 import InsertResponsiblePerson from './Components/Tabs/ResponsiblePersons/Insert';
 
 function App() {
@@ -44,6 +45,13 @@ function App() {
                 
                   ["/insert-product","/add-product","/new-product","/create-product"].map((path)=>(
                     <Route path={path} key={path} element={<InsertProduct/>}/>
+                  ))
+                }
+
+                {
+                  
+                  ["/insert-activity","/add-activity","/new-activity","/create-activity"].map((path)=>(
+                    <Route path={path} key={path} element={<InsertActivity/>}/>
                   ))
                 }
 

@@ -13,12 +13,14 @@ import Box from "@mui/material/Box";
 import CollapseList from "./CollapseList";
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import EngineeringIcon from '@mui/icons-material/Engineering';
+import EmojiTransportationIcon from '@mui/icons-material/EmojiTransportation';
 
 function Sidebar({ showSideBar,toggleSideBarShowingState }) {
   const [openCategory, setOpenCategory] = useState(false);
   const [openProduct, setOpenProduct] = useState(false);
   const [openActivity, setOpenActivity] = useState(false);
   const [openResponsiblePersons, setOpenResponsiblePersons] = useState(false);
+  const [openPortfolio, setOpenPortfolio] = useState(false);
 
   const toggleCategory = () => {
     setOpenCategory(!openCategory);
@@ -40,6 +42,12 @@ function Sidebar({ showSideBar,toggleSideBarShowingState }) {
   }
   const toggleResponsiblePersons = () => {
     setOpenResponsiblePersons(!openResponsiblePersons);
+    if(!showSideBar){
+      toggleSideBarShowingState()
+    }
+  }
+  const togglePortfolio = ()=>{
+    setOpenPortfolio(!openPortfolio);
     if(!showSideBar){
       toggleSideBarShowingState()
     }
@@ -106,6 +114,18 @@ function Sidebar({ showSideBar,toggleSideBarShowingState }) {
             {showSideBar ? (openResponsiblePersons ? <ExpandLessIcon /> : <ExpandMoreIcon />) :<></>}
           </ListItem>
           <CollapseList baseUrl={"responsible-person"} openState={openResponsiblePersons}/>
+
+          {/* Portfolio Companies */}
+          <ListItem button onClick={togglePortfolio} className="hover:bg-cyan-700">
+            <ListItemIcon>
+              <EmojiTransportationIcon className="text-white" sx={{ fontSize: "30px" }} />
+            </ListItemIcon>
+            {showSideBar && (
+              <ListItemText primary="Other Companies" />
+            )}
+            {showSideBar ? (openPortfolio ? <ExpandLessIcon /> : <ExpandMoreIcon />) :<></>}
+          </ListItem>
+          <CollapseList baseUrl={"portfolio-companies"} openState={openPortfolio}/>
         </List>
       </Box>
   );

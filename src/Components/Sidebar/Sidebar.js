@@ -46,7 +46,7 @@ function Sidebar({ showSideBar,toggleSideBarShowingState }) {
   }
 
   return (
-      <Box className={` bg-cyan-950 text-white ${showSideBar?"w-1/6":"w-1/12"}`}>
+      <Box className={`bg-cyan-950 overflow-y-auto  text-white ${showSideBar?"w-1/6":"w-1/12"}`}>
         <List>
           {/* Summary */}
           <Link to="/summary">
@@ -105,7 +105,7 @@ function Sidebar({ showSideBar,toggleSideBarShowingState }) {
             )}
             {showSideBar ? (openResponsiblePersons ? <ExpandLessIcon /> : <ExpandMoreIcon />) :<></>}
           </ListItem>
-          <CollapseList baseUrl={"responsible-persons"} openState={openResponsiblePersons}/>
+          <CollapseList baseUrl={"responsible-person"} openState={openResponsiblePersons}/>
         </List>
       </Box>
   );

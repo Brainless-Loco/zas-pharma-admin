@@ -1,5 +1,8 @@
 import React from "react";
-import { Modal, Box, Typography, CircularProgress } from "@mui/material";
+import CircularProgress  from "@mui/material/CircularProgress";
+import Modal from "@mui/material/Modal";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import ErrorIcon from "@mui/icons-material/Error";
 

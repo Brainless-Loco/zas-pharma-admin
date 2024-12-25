@@ -1,17 +1,14 @@
 import React, { useState, useEffect } from "react";
-import {
-  TextField,
-  Button,
-  Box,
-  FormControl,
-  Typography,
-  Divider,
-  Grid,
-  IconButton,
-  InputLabel,
-  Select,
-  MenuItem,
-} from "@mui/material";
+import TextField from "@mui/material/TextField";
+import Button from "@mui/material/Button";
+import Box from "@mui/material/Box";
+import FormControl from "@mui/material/FormControl";
+import Typography from "@mui/material/Typography";
+import Divider from "@mui/material/Divider";
+import IconButton from "@mui/material/IconButton";
+import InputLabel from "@mui/material/InputLabel";
+import Select from "@mui/material/Select";
+import MenuItem from "@mui/material/MenuItem";
 import { AddCircleOutline, RemoveCircleOutline } from "@mui/icons-material";
 import { collection, getDocs, doc, updateDoc, addDoc, serverTimestamp } from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
@@ -118,6 +115,7 @@ function InsertProduct() {
         pictures: uploadedPictures,
         createdAt: serverTimestamp(),
         categoryId: selectedCategory.id,
+        categoryTitle: selectedCategory.title,
         productId: categoryProductRef.id,
       })
 
@@ -307,7 +305,7 @@ function InsertProduct() {
             fullWidth
             sx={{ mt: 3 }}
           >
-            Save Product
+            Save Medicine
           </Button>
         </>
       )}

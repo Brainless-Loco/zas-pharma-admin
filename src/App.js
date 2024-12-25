@@ -4,10 +4,11 @@ import Appbar from './Components/AppBar/Appbar';
 import { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import Sidebar from './Components/Sidebar/Sidebar';
-import Summary from './Components/Tabs/Summary';
+import Summary from './Components/Summary/Summary';
 import { Box } from '@mui/material';
 import InsertCategory from './Components/Tabs/Category/Insert';
 import InsertProduct from './Components/Tabs/Products/Insert';
+import InsertResponsiblePerson from './Components/Tabs/ResponsiblePersons/Insert';
 
 function App() {
   const [showSideBar, setShowSideBar] = useState(true)
@@ -28,13 +29,13 @@ function App() {
               <Routes>
                 {
                   ["/","summary","Summary"].map((path)=>(
-                    <Route path={path} element={<Summary/>}/>
+                    <Route path={path} key={path} element={<Summary/>}/>
                   ))
                 }
 
                 {
                   ["/insert-category","/add-category","/new-category", "/create-category"].map((path)=>(
-                    <Route path={path} element={<InsertCategory/>}/>
+                    <Route path={path} key={path} element={<InsertCategory/>}/>
                   ))
 
                 }
@@ -42,7 +43,14 @@ function App() {
                 { 
                 
                   ["/insert-product","/add-product","/new-product","/create-product"].map((path)=>(
-                    <Route path={path} element={<InsertProduct/>}/>
+                    <Route path={path} key={path} element={<InsertProduct/>}/>
+                  ))
+                }
+
+                { 
+                
+                  ["/insert-responsible-person","/add-responsible-person","/new-product","/create-responsible-person"].map((path)=>(
+                    <Route path={path} key={path} element={<InsertResponsiblePerson/>}/>
                   ))
                 }
               
